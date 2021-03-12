@@ -119,3 +119,15 @@ class QuestionDetailViewTests(TestCase):
         response = self.client.get(url)
 
         self.assertContains(response, past_question.question_text)
+
+
+class QuestionVoteViewTests(TestCase):
+    def test_undefined_pk_question(self):
+        url = reverse('polls:vote', args=(1,))
+        response = self.client.get(url)
+
+        self.assertEqual(response.status_code, 404)
+
+    # TODO ADD FORM POST TEST
+
+
